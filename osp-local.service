@@ -1,0 +1,16 @@
+[Unit]
+Description=/etc/osp.local Compatibility
+ConditionPathExists=/etc/osp.local
+After=network-manager.service
+ 
+[Service]
+Type=forking
+ExecStart=/etc/osp.local start
+TimeoutSec=0
+StandardOutput=tty
+RemainAfterExit=yes
+SysVStartPriority=99
+ 
+[Install]
+WantedBy=multi-user.target
+
