@@ -23,7 +23,7 @@ while [ 1 ]
 do
     status_monitor
     sleep 1
-    ./ws_client &
+    ./ws_client 123 0 &
 done
 #*********************************************END OF FILE**********************#
 
