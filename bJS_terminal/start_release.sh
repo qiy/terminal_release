@@ -23,7 +23,8 @@ while [ 1 ]
 do
     status_monitor
     sleep 1
-    ./ws_client 123 0 &
+##    ./ws_client user_name device_type &
+    ./smart_home 123 0 &
 done
 #*********************************************END OF FILE**********************#
 
