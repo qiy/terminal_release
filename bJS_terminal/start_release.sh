@@ -1,4 +1,4 @@
-#!/bin/bash 
+#
 #  ------------------------------------------------------------------*
 # @file    start_release.sh
 # @date    2024-01-12
@@ -19,12 +19,13 @@ status_monitor()
 #  ------------------------------------------------------------------
   # @brief       loop reading device node
 #  ------------------------------------------------------------------*/
+cd /home/bJS_terminal/
+taskset -c 2 ./smart_home 123 0 &
 while [ 1 ]
 do
-    status_monitor
+    status_monitor > ./run_time.log
     sleep 1
 ##    ./ws_client user_name device_type &
-    ./smart_home 123 0 &
 done
 #*********************************************END OF FILE**********************#
 
