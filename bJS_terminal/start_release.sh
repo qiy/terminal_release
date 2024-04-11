@@ -20,11 +20,19 @@ status_monitor()
   # @brief       loop reading device node
 #  ------------------------------------------------------------------*/
 cd /home/bJS_terminal/
-taskset -c 2 ./smart_home 123 0 &
+taskset -c 2 ./smart_home 123 0 >> ./smart_home.log &
 while [ 1 ]
 do
     status_monitor > ./run_time.log
-    sleep 1
+    task_flag=$(ps -elf | grep smart_home | wc -l)
+    #echo $task_flag
+	if [ "$task_flag" != "2" ]; then
+		echo "smart_home is stuck"
+		killall smart_home
+        sleep 1
+        taskset -c 2 ./smart_home 123 0 > smart_home.log &
+    fi  
+    sleep 5
 ##    ./ws_client user_name device_type &
 done
 #*********************************************END OF FILE**********************#
