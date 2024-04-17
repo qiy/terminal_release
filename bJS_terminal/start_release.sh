@@ -6,7 +6,7 @@
 # @brief   
 #  ------------------------------------------------------------------*
 
-echo "running release version 0.0.0.1 ..."
+echo "running release version 0.0.0.1 at 20240417..."
 let Sys_uptime=0
 #  ------------------------------------------------------------------
 # @brief       determine ,route
