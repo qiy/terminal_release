@@ -21,7 +21,7 @@ status_monitor()
 #  ------------------------------------------------------------------*/
 cd /home/bJS_terminal/
 rm smart_home.log
-taskset -c 2 ./smart_home 123 0 >> ./smart_home.log &
+nice -n -20 taskset -c 2 ./smart_home 123 0 >> smart_home.log &
 while [ 1 ]
 do
     status_monitor > ./run_time.log
@@ -31,7 +31,7 @@ do
 		echo "smart_home is stuck"
 		killall smart_home
         sleep 1
-        taskset -c 2 ./smart_home 123 0 >> smart_home.log &
+        nice -n -20 taskset -c 2 ./smart_home 123 0 >> smart_home.log &
     fi  
     sleep 5
 ##    ./ws_client user_name device_type &
