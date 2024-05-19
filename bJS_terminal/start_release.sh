@@ -19,6 +19,20 @@ status_monitor()
 #  ------------------------------------------------------------------
   # @brief       loop reading device node
 #  ------------------------------------------------------------------*/
+brctl delif brtap eth0
+brctl delif brtap enx000ec677d959
+brctl delbr brtap
+
+#start openvpn
+openvpn --config /etc/openvpn/client.ovpn &
+sleep 10
+brctl addbr brtap
+brctl addif brtap tap0
+brctl addif brtap enx000ec677d959
+ifconfig brtap 10.8.0.2 up
+ifconfig tap0 0.0.0.0 up
+
+# start smart_home
 cd /home/bJS_terminal/
 rm smart_home.log
 nice -n -20 taskset -c 2 ./smart_home 123 0 >> smart_home.log &
