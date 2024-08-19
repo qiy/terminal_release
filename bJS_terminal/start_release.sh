@@ -12,7 +12,7 @@ let Sys_uptime=0
 # @brief       determine ,route
 #  ------------------------------------------------------------------*/
 status_monitor()
-{   
+{
 	Sys_uptime=$(cat /proc/uptime | awk '{print $1}')
     echo "Current system runtime:$Sys_uptime"
 }
@@ -25,7 +25,7 @@ run_openvpn()
     ps -ef | grep -F "openvpn" | grep -v -F "grep" > /dev/null
     if [ $? -ne 0 ]
     then
-        openvpn --config /etc/openvpn/client.ovpn &
+        taskset -c 3 openvpn --config /etc/openvpn/client.ovpn &
     fi
 }
 
